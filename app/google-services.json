@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62758690892",
+    "project_id": "e-absensi-itc-24e34",
+    "storage_bucket": "e-absensi-itc-24e34.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62758690892:android:36e1ddf3508d17c32cd4e9",
+        "android_client_info": {
+          "package_name": "com.smkganesa.eabsensi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnhSwUtcvGYQgnwtthdmnAb4ge3_SfeeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
