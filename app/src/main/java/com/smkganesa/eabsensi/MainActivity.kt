@@ -17,7 +17,16 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : ComponentActivity() {
+
     private lateinit var webView: WebView
+
+    private val cameraPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (!granted) {
+            // Kamera tidak diizinkan oleh pengguna.
+        }
+    }
 
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -26,35 +35,83 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         createNotificationChannel()
-        requestNotificationPermission()
-        subscribeToAnnouncements()
 
         webView = WebView(this)
+
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         webView.settings.mediaPlaybackRequiresUserGesture = false
         webView.settings.allowFileAccess = true
         webView.settings.allowContentAccess = true
+
         webView.webViewClient = WebViewClient()
+
         webView.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest) {
                 runOnUiThread {
-                    if (request.resources.contains(PermissionRequest.RESOURCE_VIDEO_CAPTURE) &&
-                        ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        request.grant(arrayOf(PermissionRequest.RESOURCE_VIDEO_CAPTURE))
+                    if (request.resources.contains(
+                            PermissionRequest.RESOURCE_VIDEO_CAPTURE
+                        )
+                    ) {
+                        if (
+                            ContextCompat.checkSelfPermission(
+                                this@MainActivity,
+                                Manifest.permission.CAMERA
+                            ) == PackageManager.PERMISSION_GRANTED
+                        ) {
+                            request.grant(
+                                arrayOf(PermissionRequest.RESOURCE_VIDEO_CAPTURE)
+                            )
+                        } else {
+                            request.deny()
+                            requestCameraPermission()
+                        }
                     } else {
                         request.deny()
                     }
                 }
             }
         }
+
         setContentView(webView)
+
+        requestCameraPermission()
+        requestNotificationPermission()
+        subscribeToAnnouncements()
+
         webView.loadUrl("file:///android_asset/index.html")
     }
 
+    private fun requestCameraPermission() {
+        if (
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+    }
+
+    private fun requestNotificationPermission() {
+        if (
+            Build.VERSION.SDK_INT >= 33 &&
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notificationPermissionLauncher.launch(
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+        }
+    }
+
     private fun subscribeToAnnouncements() {
-        FirebaseMessaging.getInstance().subscribeToTopic("pengumuman_itc")
+        FirebaseMessaging.getInstance()
+            .subscribeToTopic("pengumuman_itc")
     }
 
     private fun createNotificationChannel() {
@@ -63,19 +120,20 @@ class MainActivity : ComponentActivity() {
                 "pengumuman_itc",
                 "Pengumuman ITC",
                 NotificationManager.IMPORTANCE_DEFAULT
-            ).apply { description = "Notifikasi pengumuman E-Absensi ITC" }
-            getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
-        }
-    }
+            ).apply {
+                description = "Notifikasi pengumuman E-Absensi ITC"
+            }
 
-    private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= 33 &&
-            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            getSystemService(NotificationManager::class.java)
+                .createNotificationChannel(channel)
         }
     }
 
     override fun onBackPressed() {
-        if (::webView.isInitialized && webView.canGoBack()) webView.goBack() else super.onBackPressed()
+        if (::webView.isInitialized && webView.canGoBack()) {
+            webView.goBack()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
