@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">E-Absensi ITC</string>
+    <string name="default_notification_channel_id">pengumuman_itc</string>
+    <string name="default_notification_channel_name">Pengumuman ITC</string>
+</resources>

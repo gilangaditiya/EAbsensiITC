@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071b33">
+  <meta name="description" content="E-Absensi ITC SMK Ganesa">
+  <title>E-Absensi ITC - SMK Ganesa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-logo"><img src="logo.png"/></div>
+    <strong>E-Absensi ITC</strong>
+    <span>SMK Ganesa</span>
+    <i class="spinner"></i>
+  </div>
+
+  <main id="app">
+    <header class="app-header">
+      <div class="header-inner">
+        <button id="headerHomeButton" class="brand" type="button" aria-label="Beranda">
+          <span id="appLogo" class="brand-logo"><img src="logo.png"/></span>
+          <span class="brand-text">
+            <strong>E-Absensi ITC</strong>
+            <small>SMK Ganesa</small>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- PILIH AKSES -->
+    <section id="modePage" class="page active">
+      <div class="page-shell landing-shell">
+        <div class="landing-intro">
+          <span class="eyebrow">SISTEM ABSENSI DIGITAL</span>
+          <h1>Selamat Datang</h1>
+          <p>Pilih akses untuk melanjutkan</p>
+        </div>
+
+        <div class="mode-list">
+          <button id="pengelolaModeButton" class="mode-card" type="button">
+            <span class="mode-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>
+            </span>
+            <span class="mode-copy"><strong>Pengelola</strong><small>Masuk ke panel pengelola</small></span>
+            <span class="arrow">→</span>
+          </button>
+
+          <button id="anggotaModeButton" class="mode-card" type="button">
+            <span class="mode-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+            </span>
+            <span class="mode-copy"><strong>Anggota</strong><small>Lihat informasi anggota</small></span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="loginPage" class="page">
+      <div class="page-shell login-shell">
+        <button id="backToModeFromLogin" class="back-button login-back" type="button"><span>←</span> Kembali</button>
+
+        <div class="login-layout">
+          <div class="login-intro">
+            <div class="login-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.8 8.2 7 10 4.2-1.8 7-5.4 7-10V6l-7-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <span class="eyebrow">AKSES PENGELOLA</span>
+            <h1>Selamat datang</h1>
+            <p>Masuk ke panel pengelola untuk mengatur anggota dan absensi ITC.</p>
+            <div class="login-note"><span></span><small>Akses khusus petugas</small></div>
+          </div>
+
+          <form id="loginForm" class="panel login-card">
+            <div class="login-card-head">
+              <div>
+                <strong>Masuk ke akun</strong>
+                <small>Gunakan akun petugas yang terdaftar.</small>
+              </div>
+            </div>
+            <div class="login-fields">
+              <label class="field"><span>Email</span><input id="email" type="email" autocomplete="username" placeholder="nama@email.com" required></label>
+              <label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Masukkan password" required></label>
+            </div>
+            <button id="loginButton" class="primary-button login-submit" type="submit"><span>Masuk ke Dashboard</span><b>→</b></button>
+            <div id="loginMessage" class="message"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- BERANDA ANGGOTA -->
+    <section id="anggotaHomePage" class="page">
+      <div class="page-shell narrow-shell">
+        <div class="section-heading centered">
+          <span class="eyebrow">MODE ANGGOTA</span>
+          <h1>Beranda Anggota</h1>
+          <p>Lihat data anggota dan rekap absensi.</p>
+        </div>
+        <div class="choice-list">
+          <button id="lihatAnggotaModeButton" class="choice-card" type="button">
+            <span class="choice-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span>
+            <span><strong>Daftar Anggota</strong><small>Lihat anggota dan QR Code</small></span>
+            <b>→</b>
+          </button>
+          <button id="lihatRekapModeButton" class="choice-card" type="button">
+            <span class="choice-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M7 15l3-4 3 2 5-7"></path></svg></span>
+            <span><strong>Rekap Absensi</strong><small>Lihat riwayat kehadiran</small></span>
+            <b>→</b>
+          </button>
+          <button id="lihatPengumumanModeButton" class="choice-card" type="button">
+            <span class="choice-icon"><svg viewBox="0 0 24 24"><path d="M4 11h4l8-5v12l-8-5H4z"></path><path d="M8 16v3M19 9.5a4 4 0 0 1 0 5"></path></svg></span>
+            <span><strong>Pengumuman</strong><small>Lihat pengumuman terbaru ITC</small></span>
+            <b>→</b>
+          </button>
+        </div>
+        <button id="keluarModeAnggota" class="link-button" type="button">← Kembali ke pilihan akses</button>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboardPage" class="page">
+      <div class="page-shell">
+        <div class="section-bar">
+          <div class="section-heading">
+            <span class="eyebrow">PANEL PENGELOLA</span>
+            <h1>Dashboard</h1>
+            <p>Kelola data dan absensi ITC.</p>
+          </div>
+          <button id="logoutButton" class="icon-button" type="button" aria-label="Keluar">
+            <svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5M15 12H3M21 19V5a2 2 0 0 0-2-2h-6"></path></svg>
+          </button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M16 11h6M19 8v6"></path></svg></span>
+            <span><small>Total Anggota</small><strong id="totalAnggota">0</strong></span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+            <span><small>Kehadiran Hari Ini</small><strong id="totalKehadiran">0</strong></span>
+          </div>
+        </div>
+
+        <div class="dashboard-menu">
+          <button id="anggotaButton" class="menu-card" type="button"><span class="menu-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><span><strong>Data Anggota</strong><small>Tambah, edit, hapus, dan QR anggota</small></span><b>→</b></button>
+          <button id="scanQRButton" class="menu-card" type="button"><span class="menu-icon"><svg viewBox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"></path><path d="M8 8h3v3H8zM13 13h3v3h-3zM14 8h2"></path></svg></span><span><strong>Scan QR</strong><small>Catat hadir dengan QR anggota</small></span><b>→</b></button>
+          <button id="manualAbsensiButton" class="menu-card" type="button"><span class="menu-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"></path></svg></span><span><strong>Absensi Manual</strong><small>Pilih anggota dan status kehadiran</small></span><b>→</b></button>
+          <button id="rekapButton" class="menu-card" type="button"><span class="menu-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M7 15l3-4 3 2 5-7"></path></svg></span><span><strong>Rekap Absensi</strong><small>Filter dan lihat riwayat absensi</small></span><b>→</b></button>
+          <button id="pengumumanButton" class="menu-card announcement-menu-card" type="button"><span class="menu-icon"><svg viewBox="0 0 24 24"><path d="M4 11h4l8-5v12l-8-5H4z"></path><path d="M8 16v3M19 9.5a4 4 0 0 1 0 5"></path></svg></span><span><strong>Pengumuman</strong><small>Buat dan kelola pengumuman ITC</small></span><b>→</b></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANGGOTA -->
+    <section id="anggotaPage" class="page">
+      <div class="page-shell">
+        <div class="section-bar">
+          <div class="section-heading-row">
+            <button id="backFromAnggota" class="back-button compact" type="button">←</button>
+            <div class="section-heading"><span class="eyebrow">DATA ANGGOTA</span><h1>Anggota</h1><p id="anggotaSubtitle">Kelola data anggota ITC.</p></div>
+          </div>
+          <button id="tambahAnggotaButton" class="add-button" type="button">+ <span>Tambah</span></button>
+        </div>
+
+        <label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="searchAnggota" type="search" placeholder="Cari nama atau kelas..." autocomplete="off"></label>
+
+        <div id="tambahAnggotaForm" class="panel form-panel hidden">
+          <div class="panel-title"><span class="eyebrow">DATA BARU</span><h2>Tambah Anggota</h2></div>
+          <form id="formAnggota" class="form-grid">
+            <label class="field"><span>Nama Lengkap</span><input id="namaAnggota" type="text" placeholder="Nama lengkap" required></label>
+            <label class="field"><span>Kelas</span><input id="kelasAnggota" type="text" placeholder="Contoh: XI TKJ 4" required></label>
+            <label class="field"><span>Tanggal Bergabung</span><input id="tanggalBergabung" type="date" required></label>
+            <label class="field"><span>Status</span><select id="statusAnggota"><option value="aktif">Aktif</option><option value="nonaktif">Nonaktif</option></select></label>
+            <div class="form-actions"><button id="batalTambahAnggota" class="secondary-button" type="button">Batal</button><button class="primary-button" type="submit">Simpan Anggota</button></div>
+            <div id="anggotaMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div id="formEditAnggota" class="panel form-panel hidden">
+          <div class="panel-title"><span class="eyebrow">PERUBAHAN DATA</span><h2>Edit Anggota</h2></div>
+          <form id="editForm" class="form-grid">
+            <input id="editId" type="hidden">
+            <label class="field"><span>Nama Lengkap</span><input id="editNama" type="text" required></label>
+            <label class="field"><span>Kelas</span><input id="editKelas" type="text" required></label>
+            <label class="field"><span>Tanggal Bergabung</span><input id="editTanggal" type="date" required></label>
+            <label class="field"><span>Status</span><select id="editStatus"><option value="aktif">Aktif</option><option value="nonaktif">Nonaktif</option></select></label>
+            <div class="form-actions"><button id="batalEditAnggota" class="secondary-button" type="button">Batal</button><button class="primary-button" type="submit">Simpan Perubahan</button></div>
+            <div id="editAnggotaMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div class="list-head"><strong>Daftar Anggota</strong><span id="jumlahAnggota">0</span></div>
+        <div id="anggotaList" class="member-list"></div>
+        <div id="anggotaEmptyState" class="empty-state hidden"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg></span><strong>Tidak ada anggota</strong><small>Data anggota akan muncul di sini.</small></div>
+      </div>
+    </section>
+
+    <!-- QR -->
+    <section id="qrPage" class="page">
+      <div class="page-shell">
+        <div class="section-heading-row qr-heading">
+          <button id="backFromQR" class="back-button compact" type="button">←</button>
+          <div class="section-heading"><span class="eyebrow">IDENTITAS ANGGOTA</span><h1>QR Code</h1><p>Tunjukkan QR ini kepada pengelola.</p></div>
+        </div>
+        <div class="qr-card panel">
+          <div class="qr-member-info"><strong id="qrMemberName">-</strong><span id="qrMemberClass">-</span></div>
+          <div id="qrCodeDisplay" class="qr-code-display"></div>
+          <p class="qr-note">Gunakan QR ini untuk absensi anggota.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCANNER -->
+    <section id="scannerPage" class="page">
+      <div class="page-shell">
+        <div class="section-heading-row"><button id="backFromScanner" class="back-button compact" type="button">←</button><div class="section-heading"><span class="eyebrow">ABSENSI QR</span><h1>Scan QR</h1><p>Arahkan kamera ke QR anggota.</p></div></div>
+        <div class="scanner-card panel"><div id="qr-reader"></div><div id="scannerMessage" class="message"></div></div>
+        <div class="divider"><span>atau pilih anggota</span></div>
+        <label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="manualSearch" type="search" placeholder="Cari anggota..." autocomplete="off"></label>
+        <div id="manualAnggotaList" class="compact-list"></div>
+      </div>
+    </section>
+
+    <!-- MANUAL -->
+    <section id="manualAbsensiPage" class="page">
+      <div class="page-shell">
+        <div class="section-heading-row"><button id="backFromManualAbsensi" class="back-button compact" type="button">←</button><div class="section-heading"><span class="eyebrow">ABSENSI MANUAL</span><h1>Catat Absensi</h1><p>Pilih anggota dan status kehadiran.</p></div></div>
+
+        <label class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="manualAbsensiSearch" type="search" placeholder="Cari nama atau kelas..." autocomplete="off"></label>
+        <div id="selectedManualAnggota" class="selected-member panel hidden">
+          <div class="selected-member-main"><div id="selectedManualAvatar" class="avatar">--</div><div><strong id="selectedManualNama">-</strong><span id="selectedManualKelas">-</span></div></div>
+          <button id="clearSelectedManual" class="icon-button small" type="button" aria-label="Ganti anggota"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+        </div>
+        <div id="manualAbsensiAnggotaList" class="compact-list"></div>
+
+        <form id="manualAbsensiForm" class="panel manual-form hidden">
+          <div class="panel-title"><span class="eyebrow">STATUS KEHADIRAN</span><h2>Pilih Status</h2><p>Pilih salah satu status untuk anggota.</p></div>
+          <div class="status-grid">
+            <label class="status-option status-hadir"><input type="radio" name="manualStatus" value="hadir" checked><span><b>Hadir</b><small>Anggota hadir</small></span><i></i></label>
+            <label class="status-option status-sakit"><input type="radio" name="manualStatus" value="sakit"><span><b>Sakit</b><small>Tidak hadir karena sakit</small></span><i></i></label>
+            <label class="status-option status-izin"><input type="radio" name="manualStatus" value="izin"><span><b>Izin</b><small>Tidak hadir dengan izin</small></span><i></i></label>
+            <label class="status-option status-tanpa"><input type="radio" name="manualStatus" value="tanpa keterangan"><span><b>Tanpa Keterangan</b><small>Tidak ada keterangan</small></span><i></i></label>
+          </div>
+          <button id="simpanManualAbsensi" class="primary-button full" type="submit">Simpan Absensi</button>
+          <div id="manualAbsensiMessage" class="message"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- PENGUMUMAN -->
+    <section id="pengumumanPage" class="page">
+      <div class="page-shell">
+        <div class="section-bar announcement-section-bar">
+          <div class="section-heading-row">
+            <button id="backFromPengumuman" class="back-button compact" type="button">←</button>
+            <div class="section-heading"><span class="eyebrow">INFORMASI ITC</span><h1>Pengumuman</h1><p>Informasi kegiatan, libur, dan pengumuman lainnya.</p></div>
+          </div>
+          <button id="tambahPengumumanButton" class="add-button" type="button">+ <span>Buat</span></button>
+        </div>
+
+        <div id="formPengumumanPanel" class="panel form-panel announcement-form-panel hidden">
+          <div class="panel-title"><span class="eyebrow">PENGUMUMAN BARU</span><h2>Buat Pengumuman</h2><p>Pengumuman akan ditampilkan kepada seluruh anggota.</p></div>
+          <form id="formPengumuman" class="form-grid">
+            <label class="field"><span>Judul</span><input id="judulPengumuman" type="text" maxlength="120" placeholder="Contoh: Libur Kegiatan Eskul" required></label>
+            <label class="field"><span>Isi Pengumuman</span><textarea id="isiPengumuman" rows="6" maxlength="2000" placeholder="Tulis pengumuman di sini..." required></textarea></label>
+            <div class="form-actions"><button id="batalPengumuman" class="secondary-button" type="button">Batal</button><button id="simpanPengumuman" class="primary-button" type="submit">Terbitkan</button></div>
+            <div id="pengumumanMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div class="announcement-list-head"><div><span class="eyebrow">TERBARU</span><strong>Daftar Pengumuman</strong></div><span id="jumlahPengumuman">0</span></div>
+        <div id="pengumumanList" class="announcement-list"></div>
+        <div id="pengumumanEmptyState" class="empty-state hidden"><span><svg viewBox="0 0 24 24"><path d="M4 11h4l8-5v12l-8-5H4z"></path><path d="M8 16v3M19 9.5a4 4 0 0 1 0 5"></path></svg></span><strong>Belum ada pengumuman</strong><small>Pengumuman yang diterbitkan akan muncul di sini.</small></div>
+      </div>
+    </section>
+
+    <!-- REKAP -->
+    <section id="rekapPage" class="page">
+      <div class="page-shell">
+        <div class="section-heading-row"><button id="backFromRekap" class="back-button compact" type="button">←</button><div class="section-heading"><span class="eyebrow">RIWAYAT ABSENSI</span><h1>Rekap Absensi</h1><p>Lihat kehadiran berdasarkan tanggal.</p></div></div>
+        <div class="filter-panel panel">
+          <label class="field"><span>Tanggal</span><input id="rekapTanggal" type="date"></label>
+          <button id="resetRekapFilter" class="secondary-button" type="button">Hari Ini</button>
+        </div>
+        <div class="recap-stats">
+          <div><small>Total</small><strong id="rekapTotal">0</strong></div>
+          <div><small>Hadir</small><strong id="rekapHadir">0</strong></div>
+          <div><small>Sakit</small><strong id="rekapSakit">0</strong></div>
+          <div><small>Izin</small><strong id="rekapIzin">0</strong></div>
+          <div><small>Tanpa Ket.</small><strong id="rekapTanpaKeterangan">0</strong></div>
+        </div>
+        <div class="list-head"><strong>Detail Absensi</strong></div>
+        <div id="rekapList" class="recap-list"></div>
+        <div id="rekapEmptyState" class="empty-state hidden"><span><svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3v4a5 5 0 0 0 10 0V3M7 21v-4a5 5 0 0 1 10 0v4"></path></svg></span><strong>Belum ada absensi</strong><small>Tidak ada data absensi pada tanggal ini.</small></div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="footer-logo"><img src="logo.png"/></span><span><strong>E-Absensi ITC</strong><small>SMK Ganesa</small></span></div>
+        <span>© 2026 E-Absensi ITC · v1.0 (Beta)</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script src="app.js"></script>
+</body>
+</html>
